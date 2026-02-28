@@ -1,39 +1,38 @@
 ﻿"use client";
 
-import React from "react";
-import * from "@radix-ui/react-dialog";
-import { XIcon } from "lucide-react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 
 import { cn } from "./utils";
 
-function Sheet({ ...props }: React.ComponentProps) {
-  return ;
+function Sheet({ ...props }) {
+  return <Dialog.Root {...props} />;
 }
 
 function SheetTrigger({
   ...props
-}: React.ComponentProps) {
-  return ;
+}) {
+  return <Dialog.Trigger {...props} />;
 }
 
 function SheetClose({
   ...props
-}: React.ComponentProps) {
-  return ;
+}) {
+  return <Dialog.Close {...props} />;
 }
 
 function SheetPortal({
   ...props
-}: React.ComponentProps) {
-  return ;
+}) {
+  return <Dialog.Portal {...props} />;
 }
 
 function SheetOverlay({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
+    <Dialog.Overlay className={cn("fixed inset-0 z-50 bg-black/80", className)} {...props} />
   );
 }
 
@@ -42,50 +41,48 @@ function SheetContent({
   children,
   side = "right",
   ...props
-}: React.ComponentProps & {
-  side: "top" | "right" | "bottom" | "left";
 }) {
   return (
-    
-      
-      
+    <SheetPortal>
+      <SheetOverlay />
+      <Dialog.Content className={cn("fixed z-50 gap-4 border bg-background p-4 shadow-lg", className)} {...props}>
         {children}
-        
-          
-          Close
-        
-      
-    
+        <Dialog.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
+          <X className="h-4 w-4" />
+          <span className="sr-only">Close</span>
+        </Dialog.Close>
+      </Dialog.Content>
+    </SheetPortal>
   );
 }
 
-function SheetHeader({ className, ...props }: React.ComponentProps) {
+function SheetHeader({ className, ...props }) {
   return (
-    
+    <div className={cn("flex flex-col space-y-2 text-center sm:text-left", className)} {...props} />
   );
 }
 
-function SheetFooter({ className, ...props }: React.ComponentProps) {
+function SheetFooter({ className, ...props }) {
   return (
-    
+    <div className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)} {...props} />
   );
 }
 
 function SheetTitle({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
+    <Dialog.Title className={cn("text-lg font-semibold text-foreground", className)} {...props} />
   );
 }
 
 function SheetDescription({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
+    <Dialog.Description className={cn("text-sm text-muted-foreground", className)} {...props} />
   );
 }
 

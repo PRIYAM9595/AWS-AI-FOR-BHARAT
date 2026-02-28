@@ -1,33 +1,30 @@
 ﻿"use client";
 
-import React from "react";
-import * from "@radix-ui/react-tooltip";
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 import { cn } from "./utils";
 
 function TooltipProvider({
   delayDuration = 0,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
+    <TooltipPrimitive.Provider delayDuration={delayDuration} {...props} />
   );
 }
 
 function Tooltip({
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-    
+    <TooltipPrimitive.Root {...props} />
   );
 }
 
 function TooltipTrigger({
   ...props
-}: React.ComponentProps) {
-  return ;
+}) {
+  return <TooltipPrimitive.Trigger {...props} />;
 }
 
 function TooltipContent({
@@ -35,14 +32,15 @@ function TooltipContent({
   sideOffset = 0,
   children,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-        {children}
-        
-      
-    
+    <TooltipPrimitive.Content
+      sideOffset={sideOffset}
+      className={cn("bg-slate-900 text-white rounded px-2 py-1 text-sm", className)}
+      {...props}
+    >
+      {children}
+    </TooltipPrimitive.Content>
   );
 }
 

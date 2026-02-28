@@ -82,56 +82,32 @@ export default function CareerSimulationPage() {
       
         Career Simulation
         Simulate different career paths and see projected salary outcomes based on your skill development
-      
 
       {/* Current Projections */}
-      
-        
-          
-            
-              
-            
+
             Projected Salary
           
           ${(projectedSalary / 1000).toFixed(0)}k
           Based on {selectedSkills.length} skills
-        
 
-        
-          
-            
-              
-            
             Job Readiness
           
           {jobReadiness}%
           For senior roles
-        
 
-        
-          
-            
-              
-            
             Experience
           
           {experienceYears} years
           Current level
-        
-      
 
       {/* Interactive Skill Selector */}
-      
-        
+
           Customize Your Skills
            setSelectedSkills([])}
             className="text-sm text-gray-600 hover:text-gray-900"
           >
             Clear All
-          
-        
-        
-        
+
           {availableSkills.map((skill) => (
              toggleSkill(skill)}
               className={`px-4 py-2 rounded-lg border transition-all ${
@@ -147,75 +123,42 @@ export default function CareerSimulationPage() {
                   
                 )}
                 {skill}
-              
-            
+
           ))}
-        
 
         {/* Experience Slider */}
-        
-          
+
             Years of Experience
             {experienceYears} years
           
            setExperienceYears(Number(e.target.value))}
             className="w-full"
           />
-        
-      
 
       {/* Salary Projection Component */}
-      
-        
-      
 
       {/* 12-Month Projection Chart */}
       
         12-Month Projection
-        
-          
-            
-              
-                
-                  
-                  
-                
-              
-              
-              
+
                `$${(value / 1000).toFixed(0)}k`} />
                [`$${value.toLocaleString()}`, 'Salary']}
                 contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
               />
-              
-            
-          
-        
-      
 
       {/* Career Path Options */}
       
         Potential Career Paths
         
           {careerPaths.map((path, index) => (
-            
-              
+
                 {path.title}
                 {path.description}
-              
 
-              
-                
-                  
                   {path.salary}
-                
-                
-                  
-                  {path.timeline}
-                
-              
 
-              
+                  {path.timeline}
+
                 Required Skills:
                 
                   {path.requiredSkills.map((skill) => (
@@ -224,12 +167,8 @@ export default function CareerSimulationPage() {
                       {skill}
                     
                   ))}
-                
-              
-            
+
           ))}
-        
-      
-    
+
   );
 }

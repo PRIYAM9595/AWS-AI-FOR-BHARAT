@@ -54,90 +54,50 @@ export default function ResumeUploadPage() {
   return (
     
       {/* Animated Background */}
-      
-        
-        
-        
-      
 
       {/* Content */}
-      
-        
+
           {/* Header */}
-          
-            
-              
+
               Step 1: Upload Your Profile
-            
-            
+
               Let's Analyze Your Skills
-            
-            
+
               Upload your resume and connect your profiles to get started
-            
-          
 
           {/* Upload Section */}
-          
-            
+
               {uploadedFile ? (
-                
-                  
-                    
-                    
+
                       {uploadedFile.name}
                       
                         {(uploadedFile.size / 1024).toFixed(2)} KB
-                      
-                    
+
                      setUploadedFile(null)}
                       className="p-2 rounded-lg hover:bg-white/10 transition-colors"
                     >
-                      
-                    
-                  
-                
+
               ) : (
                 <>
-                  
-                    
-                      
-                    
-                    
+
                       Drop your resume here
-                    
-                    
+
                       or click to browse your files
-                    
-                    
-                    
+
                       Choose File
-                    
-                    
+
                       Supports PDF, DOC, DOCX (Max 10MB)
-                    
-                  
-                
+
               )}
-            
-          
 
           {/* Connection Cards */}
           
             {/* GitHub Connection */}
-            
-              
-                
-                  
-                
-                
+
                   GitHub Profile
                   
                     Connect to analyze your repositories and contributions
-                  
-                
-              
-              
+
                setGithubConnected(!githubConnected)}
                 className={`w-full py-3 rounded-xl font-medium transition-all ${
                   githubConnected
@@ -146,30 +106,19 @@ export default function ResumeUploadPage() {
                 }`}
               >
                 {githubConnected ? (
-                  
-                    
+
                     Connected
                   
                 ) : (
                   'Connect GitHub'
                 )}
-              
-            
 
             {/* LinkedIn Connection */}
-            
-              
-                
-                  
-                
-                
+
                   LinkedIn Profile
                   
                     Import your experience and endorsements
-                  
-                
-              
-              
+
                setLinkedinConnected(!linkedinConnected)}
                 className={`w-full py-3 rounded-xl font-medium transition-all ${
                   linkedinConnected
@@ -178,51 +127,37 @@ export default function ResumeUploadPage() {
                 }`}
               >
                 {linkedinConnected ? (
-                  
-                    
+
                     Connected
                   
                 ) : (
                   'Connect LinkedIn'
                 )}
-              
-            
-          
 
           {/* Analyze Button */}
-          
-            
+
               {uploadedFile ? (
                 <>
                   
                   Analyze My Skills
-                  
-                
+
               ) : (
                 <>
                   
                   Upload Resume to Continue
                 
               )}
-            
 
-            
               Your data is encrypted and secure. We never share your information.
-            
-          
 
           {/* Features */}
           
             {features.map((feature, index) => (
-              
-                
+
                 {feature.label}
               
             ))}
-          
-        
-      
-    
+
   );
 }
 

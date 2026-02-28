@@ -1,8 +1,7 @@
 ﻿"use client";
 
-import React from "react";
-import * from "@radix-ui/react-toggle";
-import { cva, VariantProps } from "class-variance-authority";
+import * as Toggle from "@radix-ui/react-toggle";
+import { cva } from "class-variance-authority";
 
 import { cn } from "./utils";
 
@@ -28,16 +27,18 @@ const toggleVariants = cva(
   },
 );
 
-function Toggle({
+function ToggleComponent({
   className,
   variant,
   size,
   ...props
-}: React.ComponentProps &
-  VariantProps) {
+}) {
   return (
-    
+    <Toggle.Root
+      className={cn(toggleVariants({ variant, size }), className)}
+      {...props}
+    />
   );
 }
 
-export { Toggle, toggleVariants };
+export { ToggleComponent as Toggle, toggleVariants };

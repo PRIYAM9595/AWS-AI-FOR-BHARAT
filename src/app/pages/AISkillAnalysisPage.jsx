@@ -80,150 +80,78 @@ export default function AISkillAnalysisPage() {
   return (
     
       {/* Header */}
-      
-        
-          
+
           Analysis Complete
         
         AI Skill Analysis
         Comprehensive analysis of your technical skills and competencies
-      
 
       {/* Stats Cards */}
       
         {stats.map((stat, index) => (
-          
-            
-              
-                
-              
+
               {stat.label}
             
             {stat.value}
             
               {stat.change}
-            
-          
+
         ))}
-      
 
       {/* Main Grid */}
       
         {/* Radar Chart */}
         
           Skill Distribution
-          
-            
-              
-                
-                
-                
-                
-              
-            
-          
-        
 
         {/* AI Insights */}
-        
-          
-            
-            AI Insights
-          
 
-          
-            
-              
-                
-                
+            AI Insights
+
                   Strong Frontend Skills
                   
                     Your React and CSS expertise is well above industry average. This positions you well for senior frontend roles.
-                  
-                
-              
-            
 
-            
-              
-                
-                
                   Backend Proficiency
                   
                     Solid Node.js and API development skills. Consider deepening GraphQL knowledge for modern API architectures.
-                  
-                
-              
-            
 
-            
-              
-                
-                
                   Cloud Skills Gap
                   
                     Your cloud and DevOps skills need improvement. Focus on AWS and container orchestration for senior roles.
-                  
-                
-              
-            
-          
-        
-      
 
       {/* Detailed Skills */}
       
         Detailed Breakdown
-        
-        
-          {skillCategories.map((category, categoryIndex) => (
-            
-              
-                
-                  
-                
-                {category.category}
-              
 
-              
+          {skillCategories.map((category, categoryIndex) => (
+
+                {category.category}
+
                 {category.skills.map((skill) => (
-                  
-                    
+
                       {skill.name}
                       
                         {skill.level}%
                         {skill.trend === 'up' && (
                           
                         )}
-                      
-                    
-                    
+
                       = 70 ? 'bg-green-600' : skill.level >= 50 ? 'bg-blue-600' : 'bg-orange-600'
                         }`}
                         style={{ width: `${skill.level}%` }}
                       />
-                    
-                  
+
                 ))}
-              
-            
+
           ))}
-        
-      
 
       {/* CTA */}
-      
-        
-          
+
             Ready to address your skill gaps?
             Get a personalized plan to improve your weakest areas
-          
-          
+
             View Skill Gaps
-            
-          
-        
-      
-    
+
   );
 }

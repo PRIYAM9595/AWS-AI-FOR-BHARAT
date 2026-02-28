@@ -12,61 +12,25 @@ export default function DashboardPage() {
       
         Welcome back
         Track your skill development and career progress
-      
 
       {/* Stats cards */}
-      
-        
-        
-        
-        
-      
 
       {/* Quick Actions */}
-      
-        
-          
-            
+
               Upload Resume
               Analyze your skills
-            
-            
-          
-        
 
-        
-          
-            
               Skill Gaps
               Identify areas to improve
-            
-            
-          
-        
 
-        
-          
-            
               Learning Path
               View your roadmap
-            
-            
-          
-        
-      
 
       {/* Main dashboard grid */}
       
         {/* Left column - AI Insights */}
-        
-          
-        
 
         {/* Right column - Activity */}
-        
-          
-        
-      
-    
+
   );
 }

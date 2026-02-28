@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import React from "react";
-import * from "@radix-ui/react-slider";
+import * as RadixSlider from "@radix-ui/react-slider";
 
 import { cn } from "./utils";
 
@@ -11,8 +11,7 @@ function Slider({
   value,
   min = 0,
   max = 100,
-  ...props
-}: React.ComponentProps) {
+}) {
   const _values = React.useMemo(
     () =>
       Array.isArray(value)
@@ -24,14 +23,14 @@ function Slider({
   );
 
   return (
-    
-      
-        
-      
-      {Array.from({ length: _values.length }, (_, index) => (
-        
+    <RadixSlider.Root className={cn("", className)} value={_values} min={min} max={max}>
+      <RadixSlider.Track>
+        <RadixSlider.Range />
+      </RadixSlider.Track>
+      {Array.from({ length: _values.length }, (_, i) => (
+        <RadixSlider.Thumb key={i} />
       ))}
-    
+    </RadixSlider.Root>
   );
 }
 

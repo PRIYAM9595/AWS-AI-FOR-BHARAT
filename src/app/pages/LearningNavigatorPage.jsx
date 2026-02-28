@@ -62,83 +62,46 @@ export default function LearningNavigatorPage() {
   return (
     
       {/* Header */}
-      
-        
-          
+
             Learning Navigator
             Your personalized roadmap to achieve your career goals
-          
-          
-            
+
             Weekly Plan
-          
-        
-      
 
       {/* Progress Overview */}
-      
-        
-          
-            
-              
-            
+
             Completed
           
           1/5
           Milestones
-        
 
-        
-          
-            
-              
-            
             In Progress
           
           65%
           Current milestone
-        
 
-        
-          
-            
-              
-            
             Time Remaining
           
           14 weeks
           To completion
-        
 
-        
-          
-            
-              
-            
             Weekly Hours
           
           12h
           Average commitment
-        
-      
 
       {/* Career Roadmap Component */}
-      
-        
-      
 
       {/* Milestone Timeline */}
       
         Your Learning Milestones
-        
-        
+
           {milestones.map((milestone, index) => (
             
               {/* Timeline connector */}
               {index 
               )}
 
-              
                 {/* Status Icon */}
                 
                   {milestone.status === 'completed' ? (
@@ -148,19 +111,13 @@ export default function LearningNavigatorPage() {
                   ) : (
                     
                   )}
-                
 
                 {/* Content */}
-                
-                  
-                    
-                      
+
                         {milestone.title}
                         
                           {milestone.status === 'completed' ? 'Completed' : milestone.status === 'in-progress' ? 'In Progress' : 'Upcoming'}
-                        
-                      
-                      
+
                       {/* Skills */}
                       
                         {milestone.skills.map((skill) => (
@@ -168,25 +125,17 @@ export default function LearningNavigatorPage() {
                             {skill}
                           
                         ))}
-                      
 
                       {/* Progress bar for in-progress */}
                       {milestone.status === 'in-progress' && milestone.progress !== undefined && (
-                        
-                          
+
                             Progress
                             {milestone.progress}%
-                          
-                          
-                            
-                          
-                        
+
                       )}
 
                       {/* Timeline info */}
-                      
-                        
-                          
+
                           {milestone.duration}
                         
                         {milestone.status === 'completed' && milestone.completedDate && (
@@ -198,36 +147,21 @@ export default function LearningNavigatorPage() {
                         {milestone.status === 'upcoming' && milestone.startDate && (
                           Starts {milestone.startDate}
                         )}
-                      
-                    
 
                     {milestone.status === 'in-progress' && (
                       
                         Continue
-                        
-                      
+
                     )}
-                  
-                
-              
-            
+
           ))}
-        
-      
 
       {/* Action CTA */}
-      
-        
-          
+
             Need to adjust your roadmap?
             Update your goals and get a refreshed learning path
-          
-          
-            
+
             Refresh Analysis
-          
-        
-      
-    
+
   );
 }

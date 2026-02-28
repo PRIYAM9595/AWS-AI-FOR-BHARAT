@@ -1,8 +1,8 @@
 ﻿import { cn } from "./utils";
 
-function Skeleton({ className, ...props }: React.ComponentProps) {
+function Skeleton({ className, ...props }) {
   return (
-    
+    <div className={cn("animate-pulse rounded-md bg-muted", className)} {...props} />
   );
 }
 

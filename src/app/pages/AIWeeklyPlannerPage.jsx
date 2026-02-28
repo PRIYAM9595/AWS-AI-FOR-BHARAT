@@ -71,69 +71,35 @@ export default function AIWeeklyPlannerPage() {
   return (
     
       {/* Header */}
-      
-        
-          
-            
-              
+
               AI-Generated Plan
             
             Weekly Learning Planner
             Your personalized weekly schedule optimized for skill development
-          
-          
-            
+
             Add Task
-          
-        
-      
 
       {/* Weekly Stats */}
-      
-        
-          
-            
-              
-            
+
             Completed
           
           5 / 15
           Tasks this week
-        
 
-        
-          
-            
-              
-            
             Planned Hours
           
           22.5h
           This week
-        
 
-        
-          
-            
-              
-            
             Focus Areas
           
           4
           Key skills
-        
 
-        
-          
-            
-              
-            
             In Progress
           
           1
           Active task
-        
-      
 
       {/* Day Selector */}
       
@@ -154,108 +120,65 @@ export default function AIWeeklyPlannerPage() {
                 {day}
                 
                   {completedCount}/{totalCount} done
-                
-              
-            
+
           );
         })}
-      
 
       {/* Task List for Selected Day */}
-      
-        
+
           {selectedDay}'s Schedule
           
             {currentTasks.reduce((sum, task) => {
               const hours = parseFloat(task.duration.replace('h', ''));
               return sum + hours;
             }, 0)}h total
-          
-        
 
-        
           {currentTasks.length > 0 ? (
             currentTasks.map((task, index) => (
-              
-                
-                  
+
                     {/* Status Icon */}
                     
                       {task.status === 'completed' ? (
-                        
-                          
-                        
+
                       ) : task.status === 'in-progress' ? (
-                        
-                          
-                        
+
                       ) : (
-                        
-                          
-                        
+
                       )}
-                    
 
                     {/* Task Details */}
-                    
-                      
+
                         {task.task}
                         
                           {task.category}
-                        
-                      
 
-                      
-                        
-                          
                           {task.time}
                         
                         Duration: {task.duration}
-                      
-                    
-                  
 
                   {/* Action Button */}
-                  
-                    
-                  
-                
-              
+
             ))
           ) : (
-            
-              
+
               No tasks scheduled
               Add tasks to plan your day
             
           )}
-        
-      
 
       {/* Quick Actions */}
-      
-        
+
           Need a different plan?
           
             Let AI regenerate your weekly schedule based on updated goals
-          
-          
-            
-            Regenerate Plan
-          
-        
 
-        
+            Regenerate Plan
+
           Track your progress
           
             View detailed analytics on your learning journey
-          
-          
+
             View Analytics
-            
-          
-        
-      
-    
+
   );
 }

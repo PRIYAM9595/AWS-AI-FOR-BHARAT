@@ -1,32 +1,30 @@
 ﻿"use client";
 
-import React from "react";
-
 import { cn } from "./utils";
 
-function Table({ className, ...props }: React.ComponentProps) {
+function Table({ className, ...props }) {
   return (
-    
-      
-    
+    <table className={cn("w-full caption-bottom text-sm", className)} {...props} />
   );
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps) {
+function TableHeader({ className, ...props }) {
   return (
-    
+    <thead className={cn("[&_tr]:border-b", className)} {...props} />
   );
 }
 
-function TableBody({ className, ...props }: React.ComponentProps) {
+function TableBody({ className, ...props }) {
   return (
-    
+    <tbody className={cn("[&_tr:last-child]:border-b-0", className)} {...props} />
   );
 }
 
-function TableFooter({ className, ...props }: React.ComponentProps) {
+function TableFooter({ className, ...props }) {
   return (
-    tr]:last:border-b-0",
+    <tfoot
+      className={cn(
+        "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
         className,
       )}
       {...props}
@@ -34,15 +32,11 @@ function TableFooter({ className, ...props }: React.ComponentProps) {
   );
 }
 
-function TableRow({ className, ...props }: React.ComponentProps) {
+function TableRow({ className, ...props }) {
   return (
-    
-  );
-}
-
-function TableHead({ className, ...props }: React.ComponentProps) {
-  return (
-    [role=checkbox]]:translate-y-[2px]",
+    <tr
+      className={cn(
+        "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
         className,
       )}
       {...props}
@@ -50,9 +44,23 @@ function TableHead({ className, ...props }: React.ComponentProps) {
   );
 }
 
-function TableCell({ className, ...props }: React.ComponentProps) {
+function TableHead({ className, ...props }) {
   return (
-    [role=checkbox]]:translate-y-[2px]",
+    <th
+      className={cn(
+        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function TableCell({ className, ...props }) {
+  return (
+    <td
+      className={cn(
+        "px-4 py-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className,
       )}
       {...props}
@@ -63,9 +71,9 @@ function TableCell({ className, ...props }: React.ComponentProps) {
 function TableCaption({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
+    <caption className={cn("mt-4 text-sm text-muted-foreground", className)} {...props} />
   );
 }
 

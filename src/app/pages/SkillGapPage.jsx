@@ -60,127 +60,63 @@ export default function SkillGapPage() {
   return (
     
       {/* Header */}
-      
-        
-          
+
             Skill Gap Analysis
             Identify and close the gaps between your current and target skill levels
-          
-          
+
             View Learning Path
-            
-          
-        
-      
 
       {/* Stats Overview */}
-      
-        
-          
-            
-              
-            
+
             Critical Gaps
           
           2
-        
 
-        
-          
-            
-              
-            
             High Priority
           
           2
-        
 
-        
-          
-            
-              
-            
             Avg. Timeline
           
           2 months
-        
 
-        
-          
-            
-              
-            
             Potential Score
           
           92/100
-        
-      
 
       {/* Skill Gap Chart */}
-      
-        
-      
 
       {/* Detailed Skill Gaps */}
       
         Detailed Analysis
         
           {skillGaps.map((gap, index) => (
-            
-              
-                
-                  
+
                     {gap.skill}
                     
                       {gap.priority} priority
-                    
-                  
+
                   {gap.impact}
-                
-                
+
                   Start Learning
-                  
-                
-              
 
               {/* Progress Bar */}
-              
-                
+
                   Current: {gap.current}%
                   Target: {gap.target}%
-                
-                
-                  
-                  
-                
-                
-                  
-                    
+
                     {gap.timeline}
-                  
-                  
+
                     {gap.target - gap.current}% gap
-                  
-                
-              
-            
+
           ))}
-        
-      
 
       {/* CTA Section */}
-      
-        
-          
+
             Ready to close these gaps?
             Get a personalized learning roadmap with curated resources
-          
-          
-            
+
             Generate Roadmap
-          
-        
-      
-    
+
   );
 }

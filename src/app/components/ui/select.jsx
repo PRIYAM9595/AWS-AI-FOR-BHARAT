@@ -1,7 +1,6 @@
 ﻿"use client";
 
-import React from "react";
-import * from "@radix-ui/react-select";
+import * as SelectPrimitive from "@radix-ui/react-select";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -12,20 +11,20 @@ import { cn } from "./utils";
 
 function Select({
   ...props
-}: React.ComponentProps) {
-  return ;
+}) {
+  return <SelectPrimitive.Root {...props} />;
 }
 
 function SelectGroup({
   ...props
-}: React.ComponentProps) {
-  return ;
+}) {
+  return <SelectPrimitive.Group {...props} />;
 }
 
 function SelectValue({
   ...props
-}: React.ComponentProps) {
-  return ;
+}) {
+  return <SelectPrimitive.Value {...props} />;
 }
 
 function SelectTrigger({
@@ -33,16 +32,12 @@ function SelectTrigger({
   size = "default",
   children,
   ...props
-}: React.ComponentProps & {
-  size: "sm" | "default";
 }) {
   return (
-    
+    <SelectPrimitive.Trigger className={cn(className)} {...props}>
       {children}
-      
-        
-      
-    
+      <SelectPrimitive.Icon />
+    </SelectPrimitive.Trigger>
   );
 }
 
@@ -51,26 +46,24 @@ function SelectContent({
   children,
   position = "popper",
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-        
-        
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Content className={cn(className)} position={position} {...props}>
+        <SelectPrimitive.Viewport>
           {children}
-        
-        
-      
-    
+        </SelectPrimitive.Viewport>
+      </SelectPrimitive.Content>
+    </SelectPrimitive.Portal>
   );
 }
 
 function SelectLabel({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
+    <SelectPrimitive.Label className={cn(className)} {...props} />
   );
 }
 
@@ -78,47 +71,45 @@ function SelectItem({
   className,
   children,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-        
-          
-        
-      
-      {children}
-    
+    <SelectPrimitive.Item className={cn(className)} {...props}>
+      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      <SelectPrimitive.ItemIndicator>
+        <CheckIcon />
+      </SelectPrimitive.ItemIndicator>
+    </SelectPrimitive.Item>
   );
 }
 
 function SelectSeparator({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
+    <SelectPrimitive.Separator className={cn(className)} {...props} />
   );
 }
 
 function SelectScrollUpButton({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-    
+    <SelectPrimitive.ScrollUpButton className={cn(className)} {...props}>
+      <ChevronUpIcon />
+    </SelectPrimitive.ScrollUpButton>
   );
 }
 
 function SelectScrollDownButton({
   className,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-    
+    <SelectPrimitive.ScrollDownButton className={cn(className)} {...props}>
+      <ChevronDownIcon />
+    </SelectPrimitive.ScrollDownButton>
   );
 }
 

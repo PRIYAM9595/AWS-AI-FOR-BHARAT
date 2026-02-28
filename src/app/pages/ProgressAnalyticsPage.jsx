@@ -45,137 +45,66 @@ export default function ProgressAnalyticsPage() {
       
         Progress Analytics
         Track your learning progress and skill development over time
-      
 
       {/* Stats Overview */}
-      
-        
-          
-            
-              
-            
+
             Score Increase
           
           +16 pts
           Last 6 months
-        
 
-        
-          
-            
-              
-            
             Learning Hours
           
           71h
           Total invested
-        
 
-        
-          
-            
-              
-            
             Skills Improved
           
           12
           This quarter
-        
 
-        
-          
-            
-              
-            
             Streak
           
           24 days
           Current streak
-        
-      
 
       {/* Charts Grid */}
       
         {/* Skill Score Progress */}
         
           Skill Score Progress
-          
-            
-              
-                
-                  
-                    
-                    
-                  
-                
-                
-                
-                
-                
-                
-              
-            
-          
-        
 
         {/* Learning Hours */}
         
           Weekly Learning Hours
-          
-            
-              
-                
-                
-                
-                
-                
-              
-            
-          
-        
-      
 
       {/* Time Distribution & Skill Progress */}
       
         {/* Time Distribution Pie Chart */}
         
           Time Distribution
-          
-            
-              
+
                  `${name} ${(percent * 100).toFixed(0)}%`}
                 >
                   {timeDistribution.map((entry, index) => (
                     
                   ))}
-                
-                
-              
-            
-          
-        
 
         {/* Individual Skill Progress */}
         
           Skill Progress
           
             {skillProgress.map((skill, index) => (
-              
-                
+
                   {skill.name}
                   {skill.progress}%
-                
-                
+
                   = 70 ? 'bg-green-600' :
                       skill.progress >= 50 ? 'bg-blue-600' : 'bg-orange-600'
                     }`}
                   />
-                
-              
+
             ))}
-          
-        
-      
 
       {/* Activity Feed */}
       
@@ -187,32 +116,18 @@ export default function ProgressAnalyticsPage() {
             { action: 'Started AWS Solutions Architect path', time: '3 days ago', icon: Zap },
             { action: 'Achieved 24-day learning streak', time: '5 days ago', icon: Activity }
           ].map((activity, index) => (
-            
-              
-                
-              
-              
+
                 {activity.action}
                 {activity.time}
-              
-            
+
           ))}
-        
-      
 
       {/* CTA */}
-      
-        
-          
+
             Keep the momentum going
             Check your weekly planner to stay on track
-          
-          
-            
+
             View Planner
-          
-        
-      
-    
+
   );
 }

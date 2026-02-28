@@ -114,59 +114,30 @@ export default function LearningResourcesPage() {
       
         Learning Resources
         Curated learning materials tailored to your skill gaps and career goals
-      
 
       {/* Stats Overview */}
-      
-        
-          
-            
-              
-            
+
             Total Resources
           
           {resources.length}
-        
 
-        
-          
-            
-              
-            
             Completed
           
           8
-        
 
-        
-          
-            
-              
-            
             In Progress
           
           3
-        
 
-        
-          
-            
-              
-            
             Avg. Rating
           
           4.8
-        
-      
 
       {/* Filters & Search */}
-      
-        
-          
+
            setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-900"
           />
-        
 
          setSelectedType(e.target.value)}
           className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-900"
@@ -176,7 +147,6 @@ export default function LearningResourcesPage() {
           Course
           Article
           Documentation
-        
 
          setSelectedDifficulty(e.target.value)}
           className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-900"
@@ -185,64 +155,34 @@ export default function LearningResourcesPage() {
           Beginner
           Intermediate
           Advanced
-        
-      
 
       {/* Learning Resources Component */}
-      
-        
-      
 
       {/* Resource Grid */}
       
         {filteredResources.map((resource, index) => {
           const Icon = getTypeIcon(resource.type);
           return (
-            
-              
-                
-                  
-                    
-                  
-                  
-                    
+
                       {resource.title}
                     
                     {resource.platform}
-                  
-                
-                
-              
 
-              
-                
-                  
                   {resource.duration}
-                
-                
-                  
-                  {resource.rating}
-                
-                
-                  {resource.difficulty}
-                
-              
 
-              
+                  {resource.rating}
+
+                  {resource.difficulty}
+
                 Target Skill: 
                 {resource.skill}
-              
-            
+
           );
         })}
-      
 
       {/* Empty State */}
       {filteredResources.length === 0 && (
-        
-          
-            
-          
+
           No resources found
           Try adjusting your filters or search query
         

@@ -1,105 +1,102 @@
 ﻿"use client";
 
 import React from "react";
-import * from "@radix-ui/react-alert-dialog";
+import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
 import { cn } from "./utils";
 import { buttonVariants } from "./button";
 
-function AlertDialog({
-  ...props
-}: React.ComponentProps) {
-  return ;
+function AlertDialog(props) {
+  return <AlertDialogPrimitive.Root {...props} />;
 }
 
-function AlertDialogTrigger({
-  ...props
-}: React.ComponentProps) {
+function AlertDialogTrigger(props) {
+  return <AlertDialogPrimitive.Trigger {...props} />;
+}
+
+function AlertDialogPortal(props) {
+  return <AlertDialogPrimitive.Portal {...props} />;
+}
+
+function AlertDialogOverlay({ className, ...props }) {
   return (
-    
+    <AlertDialogPrimitive.Overlay
+      className={cn("fixed inset-0 z-50 bg-black/50", className)}
+      {...props}
+    />
   );
 }
 
-function AlertDialogPortal({
-  ...props
-}: React.ComponentProps) {
+function AlertDialogContent({ className, ...props }) {
   return (
-    
+    <AlertDialogPortal>
+      <AlertDialogOverlay />
+      <AlertDialogPrimitive.Content
+        className={cn(
+          "fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-lg border bg-white p-6 shadow-lg",
+          className
+        )}
+        {...props}
+      />
+    </AlertDialogPortal>
   );
 }
 
-function AlertDialogOverlay({
-  className,
-  ...props
-}: React.ComponentProps) {
+function AlertDialogHeader({ className, ...props }) {
   return (
-    
+    <div
+      className={cn("flex flex-col space-y-2 text-center sm:text-left", className)}
+      {...props}
+    />
   );
 }
 
-function AlertDialogContent({
-  className,
-  ...props
-}: React.ComponentProps) {
+function AlertDialogFooter({ className, ...props }) {
   return (
-    
-      
-      
-    
+    <div
+      className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
+      {...props}
+    />
   );
 }
 
-function AlertDialogHeader({
-  className,
-  ...props
-}: React.ComponentProps) {
+function AlertDialogTitle({ className, ...props }) {
   return (
-    
+    <AlertDialogPrimitive.Title
+      className={cn("text-lg font-semibold", className)}
+      {...props}
+    />
   );
 }
 
-function AlertDialogFooter({
-  className,
-  ...props
-}: React.ComponentProps) {
+function AlertDialogDescription({ className, ...props }) {
   return (
-    
+    <AlertDialogPrimitive.Description
+      className={cn("text-sm text-gray-500", className)}
+      {...props}
+    />
   );
 }
 
-function AlertDialogTitle({
-  className,
-  ...props
-}: React.ComponentProps) {
+function AlertDialogAction({ className, ...props }) {
   return (
-    
+    <AlertDialogPrimitive.Action
+      className={cn(buttonVariants(), className)}
+      {...props}
+    />
   );
 }
 
-function AlertDialogDescription({
-  className,
-  ...props
-}: React.ComponentProps) {
+function AlertDialogCancel({ className, ...props }) {
   return (
-    
-  );
-}
-
-function AlertDialogAction({
-  className,
-  ...props
-}: React.ComponentProps) {
-  return (
-    
-  );
-}
-
-function AlertDialogCancel({
-  className,
-  ...props
-}: React.ComponentProps) {
-  return (
-    
+    <AlertDialogPrimitive.Cancel
+      className={cn(
+        buttonVariants({ variant: "outline" }),
+        "mt-2 sm:mt-0",
+        className
+      )}
+      {...props}
+    />
   );
 }
 

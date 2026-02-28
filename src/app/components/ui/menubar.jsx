@@ -1,52 +1,48 @@
 ﻿"use client";
 
 import React from "react";
-import * from "@radix-ui/react-menubar";
+import * as MenubarPrimitive from "@radix-ui/react-menubar";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
 import { cn } from "./utils";
 
-function Menubar({
-  className,
-  ...props
-}: React.ComponentProps) {
+function Menubar({ className, ...props }) {
   return (
-    
+    <MenubarPrimitive.Root
+      className={cn(
+        "flex h-10 items-center space-x-1 rounded-md border bg-white p-1",
+        className
+      )}
+      {...props}
+    />
   );
 }
 
-function MenubarMenu({
-  ...props
-}: React.ComponentProps) {
-  return ;
+function MenubarMenu(props) {
+  return <MenubarPrimitive.Menu {...props} />;
 }
 
-function MenubarGroup({
-  ...props
-}: React.ComponentProps) {
-  return ;
+function MenubarGroup(props) {
+  return <MenubarPrimitive.Group {...props} />;
 }
 
-function MenubarPortal({
-  ...props
-}: React.ComponentProps) {
-  return ;
+function MenubarPortal(props) {
+  return <MenubarPrimitive.Portal {...props} />;
 }
 
-function MenubarRadioGroup({
-  ...props
-}: React.ComponentProps) {
+function MenubarRadioGroup(props) {
+  return <MenubarPrimitive.RadioGroup {...props} />;
+}
+
+function MenubarTrigger({ className, ...props }) {
   return (
-    
-  );
-}
-
-function MenubarTrigger({
-  className,
-  ...props
-}: React.ComponentProps) {
-  return (
-    
+    <MenubarPrimitive.Trigger
+      className={cn(
+        "px-3 py-1.5 text-sm font-medium rounded-md hover:bg-gray-100",
+        className
+      )}
+      {...props}
+    />
   );
 }
 
@@ -56,11 +52,18 @@ function MenubarContent({
   alignOffset = -4,
   sideOffset = 8,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-    
+    <MenubarPrimitive.Content
+      align={align}
+      alignOffset={alignOffset}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 min-w-[12rem] rounded-md border bg-white p-1 shadow-md",
+        className
+      )}
+      {...props}
+    />
   );
 }
 
@@ -69,12 +72,16 @@ function MenubarItem({
   inset,
   variant = "default",
   ...props
-}: React.ComponentProps & {
-  inset?;
-  variant: "default" | "destructive";
 }) {
   return (
-    
+    <MenubarPrimitive.Item
+      className={cn(
+        "flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm hover:bg-gray-100",
+        inset && "pl-8",
+        className
+      )}
+      {...props}
+    />
   );
 }
 
@@ -83,16 +90,21 @@ function MenubarCheckboxItem({
   children,
   checked,
   ...props
-}: React.ComponentProps) {
+}) {
   return (
-    
-      
-        
-          
-        
-      
+    <MenubarPrimitive.CheckboxItem
+      checked={checked}
+      className={cn(
+        "relative flex cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm hover:bg-gray-100",
+        className
+      )}
+      {...props}
+    >
+      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <CheckIcon className="h-4 w-4" />
+      </span>
       {children}
-    
+    </MenubarPrimitive.CheckboxItem>
   );
 }
 
@@ -100,53 +112,52 @@ function MenubarRadioItem({
   className,
   children,
   ...props
-}: React.ComponentProps) {
-  return (
-    
-      
-        
-          
-        
-      
-      {children}
-    
-  );
-}
-
-function MenubarLabel({
-  className,
-  inset,
-  ...props
-}: React.ComponentProps & {
-  inset?;
 }) {
   return (
-    
+    <MenubarPrimitive.RadioItem
+      className={cn(
+        "relative flex cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm hover:bg-gray-100",
+        className
+      )}
+      {...props}
+    >
+      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <CircleIcon className="h-2 w-2 fill-current" />
+      </span>
+      {children}
+    </MenubarPrimitive.RadioItem>
   );
 }
 
-function MenubarSeparator({
-  className,
-  ...props
-}: React.ComponentProps) {
+function MenubarLabel({ className, inset, ...props }) {
   return (
-    
+    <MenubarPrimitive.Label
+      className={cn("px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className)}
+      {...props}
+    />
   );
 }
 
-function MenubarShortcut({
-  className,
-  ...props
-}: React.ComponentProps) {
+function MenubarSeparator({ className, ...props }) {
   return (
-    
+    <MenubarPrimitive.Separator
+      className={cn("my-1 h-px bg-gray-200", className)}
+      {...props}
+    />
   );
 }
 
-function MenubarSub({
-  ...props
-}: React.ComponentProps) {
-  return ;
+function MenubarShortcut({ className, ...props }) {
+  return (
+    <span
+      className={cn("ml-auto text-xs tracking-widest text-gray-500", className)}
+      {...props}
+    />
+  );
+}
+
+function MenubarSub(props) {
+  return <MenubarPrimitive.Sub {...props} />;
 }
 
 function MenubarSubTrigger({
@@ -154,23 +165,31 @@ function MenubarSubTrigger({
   inset,
   children,
   ...props
-}: React.ComponentProps & {
-  inset?;
 }) {
   return (
-    
+    <MenubarPrimitive.SubTrigger
+      className={cn(
+        "flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm hover:bg-gray-100",
+        inset && "pl-8",
+        className
+      )}
+      {...props}
+    >
       {children}
-      
-    
+      <ChevronRightIcon className="ml-auto h-4 w-4" />
+    </MenubarPrimitive.SubTrigger>
   );
 }
 
-function MenubarSubContent({
-  className,
-  ...props
-}: React.ComponentProps) {
+function MenubarSubContent({ className, ...props }) {
   return (
-    
+    <MenubarPrimitive.SubContent
+      className={cn(
+        "z-50 min-w-[8rem] rounded-md border bg-white p-1 shadow-md",
+        className
+      )}
+      {...props}
+    />
   );
 }
 

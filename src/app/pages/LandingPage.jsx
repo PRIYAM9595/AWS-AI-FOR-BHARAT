@@ -17,148 +17,71 @@ export default function LandingPage() {
   return (
     
       {/* Navigation */}
-      
-        
-          
-            
-              
-            
-            
+
               SkillGPS
-            
-          
-          
-          
-            
+
               Sign In
-            
-            
+
               Get Started
-              
-            
-          
-        
-      
 
       {/* Hero Section */}
-      
-        
-          
-            
-              
+
               AI-Powered Career Navigation
-            
 
-            
               Navigate Your Career with AI
-            
-            
-            
-              Like Google Maps for your skills. Analyze your resume, detect skill gaps, and get AI-powered roadmaps to reach your career goals faster.
-            
 
-            
-              
+              Like Google Maps for your skills. Analyze your resume, detect skill gaps, and get AI-powered roadmaps to reach your career goals faster.
+
                 Start Your Journey
-                
-              
-              
-              
+
                 Watch Demo
-                
-              
-            
-          
 
           {/* Feature Cards Grid */}
           
             {features.map((feature, index) => (
-              
-                
-                  
-                
+
                 {feature.title}
                 {feature.description}
               
             ))}
-          
-        
-      
 
       {/* Stats Section */}
-      
-        
-          
-            
+
               {stats.map((stat, index) => (
-                
-                  
+
                     {stat.value}
                   
                   {stat.label}
                 
               ))}
-            
-          
-        
-      
 
       {/* How It Works Section */}
-      
-        
-          
-            
-              How It Works
-            
-            
-              Get AI-powered career guidance in three simple steps
-            
-          
 
-          
+              How It Works
+
+              Get AI-powered career guidance in three simple steps
+
             {steps.map((step, index) => (
-              
-                
-                  
+
                     {index + 1}
-                  
-                  
-                    
-                  
+
                   {step.title}
                   {step.description}
-                
-              
+
             ))}
-          
-        
-      
 
       {/* CTA Section */}
-      
-        
-          
-            
+
               Ready to Navigate Your Career?
-            
-            
+
               Join thousands of professionals using AI to accelerate their career growth
-            
-            
+
               Get Started Now
-              
-            
-          
-        
-      
 
       {/* Footer */}
-      
-        
+
           © 2026 SkillGPS. All rights reserved.
-        
-      
-    
+
   );
 }
 

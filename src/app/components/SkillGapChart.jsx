@@ -1,5 +1,4 @@
 ﻿import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Legend } from 'recharts';
-import { motion } from 'motion/react';
 
 const data = [
   { skill: 'React', current: 85, market: 95 },
@@ -12,50 +11,33 @@ const data = [
 
 export function SkillGapChart() {
   return (
-    
-      {/* Card */}
-      
-        
-          Skill Gap Analysis
-          Your skills vs. market demand
-        
+    <div className="w-full bg-white rounded-lg shadow-lg p-6">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-900">Skill Gap Analysis</h2>
+        <p className="text-gray-600">Your skills vs. market demand</p>
+      </div>
 
-        
-          
-            
-              
-                
-                  
-                  
-                
-                
-                  
-                  
-                
-              
-              
-              
-              
-              
-              
-               {value}}
-              />
-            
-          
-        
+      <ResponsiveContainer width="100%" height={400}>
+        <RadarChart data={data}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="skill" />
+          <PolarRadiusAxis />
+          <Radar name="Current" dataKey="current" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
+          <Radar name="Market Demand" dataKey="market" stroke="#ef4444" fill="#ef4444" fillOpacity={0.6} />
+          <Legend />
+        </RadarChart>
+      </ResponsiveContainer>
 
-        {/* Key insights */}
-        
-          
-            Avg. Gap
-            -22%
-          
-          
-            Priority Skills
-            3
-          
-        
-      
-    
+      <div className="grid grid-cols-2 gap-4 mt-6">
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600">Avg. Gap</p>
+          <p className="text-2xl font-bold text-blue-600">-22%</p>
+        </div>
+        <div className="bg-red-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600">Priority Skills</p>
+          <p className="text-2xl font-bold text-red-600">3</p>
+        </div>
+      </div>
+    </div>
   );
 }

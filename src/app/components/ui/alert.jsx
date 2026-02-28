@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 import { cn } from "./utils";
 
@@ -8,39 +8,42 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
+        default: "bg-white text-gray-900",
         destructive:
-          "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
+          "bg-red-50 text-red-700 border-red-200",
       },
     },
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
-function Alert({
-  className,
-  variant,
-  ...props
-}: React.ComponentProps & VariantProps) {
+function Alert({ className, variant, ...props }) {
   return (
-    
+    <div
+      role="alert"
+      className={cn(alertVariants({ variant }), className)}
+      {...props}
+    />
   );
 }
 
-function AlertTitle({ className, ...props }: React.ComponentProps) {
+function AlertTitle({ className, ...props }) {
   return (
-    
+    <h5
+      className={cn("mb-1 font-medium leading-none", className)}
+      {...props}
+    />
   );
 }
 
-function AlertDescription({
-  className,
-  ...props
-}: React.ComponentProps) {
+function AlertDescription({ className, ...props }) {
   return (
-    
+    <div
+      className={cn("text-sm opacity-90", className)}
+      {...props}
+    />
   );
 }
 
