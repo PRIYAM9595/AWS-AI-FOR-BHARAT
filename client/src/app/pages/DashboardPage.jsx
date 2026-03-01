@@ -14,7 +14,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/gemini/dashboard", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/dashboard`, {
           method: "POST",
           headers: { "Content-Type": "application/json" }
         });
@@ -153,8 +153,8 @@ export default function DashboardPage() {
               {dashboardData?.activity?.map((act) => (
                 <div key={act.id} className="flex gap-4 items-start">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${act.type === 'analysis' ? 'bg-blue-500/20 text-blue-400' :
-                      act.type === 'upload' ? 'bg-emerald-500/20 text-emerald-400' :
-                        'bg-purple-500/20 text-purple-400'
+                    act.type === 'upload' ? 'bg-emerald-500/20 text-emerald-400' :
+                      'bg-purple-500/20 text-purple-400'
                     }`}>
                     {act.type === 'analysis' ? <Target className="w-5 h-5" /> :
                       act.type === 'upload' ? <Upload className="w-5 h-5" /> :

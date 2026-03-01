@@ -15,7 +15,7 @@ export default function AIWeeklyPlannerPage() {
   useEffect(() => {
     const fetchPlanner = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/gemini/weekly-planner", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/weekly-planner`, {
           method: "POST",
           headers: { "Content-Type": "application/json" }
         });
@@ -75,8 +75,8 @@ export default function AIWeeklyPlannerPage() {
               key={day}
               onClick={() => setSelectedDay(day)}
               className={`min-w-[80px] px-5 py-4 rounded-2xl border transition-all ${isSelected
-                  ? "bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20"
-                  : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
+                ? "bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20"
+                : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
                 }`}
             >
               <div className="font-bold text-lg">{day}</div>

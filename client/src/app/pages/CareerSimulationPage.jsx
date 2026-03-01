@@ -42,7 +42,7 @@ export default function CareerSimulationPage() {
   const runSimulation = async () => {
     setIsSimulating(true);
     try {
-      const response = await fetch("http://localhost:5000/api/gemini/career-simulation", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/career-simulation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: "Frontend Developer" }),
@@ -146,8 +146,8 @@ export default function CareerSimulationPage() {
                       key={skill}
                       onClick={() => toggleSkill(skill)}
                       className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border flex items-center gap-1 ${active
-                          ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-300"
-                          : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10"
+                        ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-300"
+                        : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10"
                         }`}
                     >
                       {active ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}

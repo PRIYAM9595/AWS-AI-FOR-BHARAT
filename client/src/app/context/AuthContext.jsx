@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // Base URL for the new backend
-    const API_URL = "http://localhost:5000/api";
+    const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
     useEffect(() => {
         // Check for saved user on initial load

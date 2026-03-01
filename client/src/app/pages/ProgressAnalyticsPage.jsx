@@ -16,7 +16,7 @@ export default function ProgressAnalyticsPage() {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/gemini/progress-analytics", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/progress-analytics`, {
           method: "POST",
           headers: { "Content-Type": "application/json" }
         });
