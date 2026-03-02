@@ -1,0 +1,19 @@
+JOHN DOE
+Software Engineer
+
+Experience:
+- Frontend Engineer at TechCorp (2020 - 2023)
+  - Built scalable React applications.
+  - Improved Lighthouse performance scores by 20%.
+  - Mentored junior engineers and led code reviews.
+- Web Developer at WebSolutions (2018 - 2020)
+  - Developed responsive landing pages using HTML, CSS, JavaScript.
+  - Integrated third-party APIs.
+
+Skills:
+- JavaScript, React, HTML, CSS
+- Git, Webpack, REST APIs
+- Familiar with Node.js and basic SQL
+
+Education:
+B.S. in Computer Science, State University (2018)
