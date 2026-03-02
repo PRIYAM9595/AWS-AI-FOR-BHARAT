@@ -1,7 +1,8 @@
-﻿import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { postJson } from "../lib/api";
 import {
   Target, TrendingUp, Award, Zap, ArrowRight, Loader2
 } from "lucide-react";
@@ -18,12 +19,7 @@ export default function ProgressAnalyticsPage() {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/progress-analytics`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userId: user?.id })
-        });
-        const data = await response.json();
+        const data = await postJson("/api/gemini/progress-analytics", { userId: user?.id });
         setAnalyticsData(data);
       } catch (error) {
         console.error("Failed to fetch analytics:", error);
@@ -46,7 +42,7 @@ export default function ProgressAnalyticsPage() {
     return (
       <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center text-white">
         <Loader2 className="w-10 h-10 animate-spin text-blue-500 mb-4" />
-        <p className="text-gray-400">Gemini is compiling your analytics...</p>
+        <p className="text-gray-400">AI is compiling your analytics...</p>
       </div>
     );
   }

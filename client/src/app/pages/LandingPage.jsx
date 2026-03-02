@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -75,7 +75,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
             className="text-gray-400 text-xl max-w-2xl mb-12"
           >
-            Stop guessing your next move. Upload your resume, let Gemini AI analyze your skill gaps, and get personalized roadmaps with predictive salary simulations.
+            Stop guessing your next move. Upload your resume, let AI AI analyze your skill gaps, and get personalized roadmaps with predictive salary simulations.
           </motion.p>
 
           <motion.div
@@ -150,7 +150,7 @@ export default function LandingPage() {
 }
 
 const features = [
-  { icon: Brain, title: "Gemini Analysis", description: "Upload your resume and let Google Gemini pinpoint your strengths and uncover critical skill gaps compared to your target role.", color: "from-blue-600 to-blue-400" },
+  { icon: Brain, title: "AI Analysis", description: "Upload your resume and let AI pinpoint your strengths and uncover critical skill gaps compared to your target role.", color: "from-blue-600 to-blue-400" },
   { icon: Target, title: "Gap Detection", description: "A crystal clear mapping of what you know versus what top companies are actively recruiting for right now.", color: "from-purple-600 to-purple-400" },
   { icon: TrendingUp, title: "Smart Roadmaps", description: "Dynamically generated, step-by-step learning modules focusing only on the skills that move the needle.", color: "from-emerald-600 to-emerald-400" },
   { icon: Globe, title: "Market Insights", description: "Real-time parsing of global tech employment trends ensuring your skills stay relevant tomorrow.", color: "from-orange-600 to-orange-400" },

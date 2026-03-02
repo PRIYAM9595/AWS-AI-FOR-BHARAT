@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { apiUrl, postJson } from "../lib/api";
 
 const AuthContext = createContext();
 
@@ -7,9 +8,6 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
-    // Base URL for the new backend
-    const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
     useEffect(() => {
         // Check for saved user on initial load
@@ -23,14 +21,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await fetch(`${API_URL}/auth/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-            const data = await response.json();
-
-            if (!response.ok) throw new Error(data.error || "Login failed");
+            const data = await postJson("/api/auth/login", { email, password });
 
             localStorage.setItem("skillgps_user", JSON.stringify(data.user));
             localStorage.setItem("skillgps_token", data.token);
@@ -43,14 +34,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (name, email, password) => {
         try {
-            const response = await fetch(`${API_URL}/auth/register`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password }),
-            });
-            const data = await response.json();
-
-            if (!response.ok) throw new Error(data.error || "Registration failed");
+            const data = await postJson("/api/auth/register", { name, email, password });
 
             localStorage.setItem("skillgps_user", JSON.stringify(data.user));
             localStorage.setItem("skillgps_token", data.token);
@@ -68,30 +52,33 @@ export const AuthProvider = ({ children }) => {
     };
 
     const uploadResume = async (file) => {
-        try {
-            const formData = new FormData();
-            formData.append("resume", file);
-            formData.append("userId", user?.id || "dummy_id");
+        const formData = new FormData();
+        formData.append("resume", file);
+        formData.append("userId", user?.id || "dummy_id");
 
-            const response = await fetch(`${API_URL}/auth/upload-resume`, {
-                method: "POST",
-                body: formData,
-            });
-            const data = await response.json();
-            if (data.success && user) {
-                const updatedUser = { ...user, hasResume: true };
-                setUser(updatedUser);
-                localStorage.setItem("skillgps_user", JSON.stringify(updatedUser));
-            }
-        } catch (err) {
-            console.error("Resume upload failed", err);
-            // Fallback local update if server fails
-            if (user) {
-                const updatedUser = { ...user, hasResume: true };
-                setUser(updatedUser);
-                localStorage.setItem("skillgps_user", JSON.stringify(updatedUser));
-            }
+        const response = await fetch(apiUrl("/api/auth/upload-resume"), {
+            method: "POST",
+            body: formData,
+        });
+
+        let data = null;
+        try {
+            data = await response.json();
+        } catch {
+            data = null;
         }
+
+        if (!response.ok || !data?.success) {
+            throw new Error(data?.error || "Resume upload failed. Please retry.");
+        }
+
+        if (user) {
+            const updatedUser = data?.user ? { ...user, ...data.user, hasResume: true } : { ...user, hasResume: true };
+            setUser(updatedUser);
+            localStorage.setItem("skillgps_user", JSON.stringify(updatedUser));
+        }
+
+        return data;
     };
 
     return (

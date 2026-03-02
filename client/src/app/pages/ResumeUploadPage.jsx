@@ -25,6 +25,7 @@ export default function ResumeUploadPage() {
   const [githubConnected, setGithubConnected] = useState(false);
   const [linkedinConnected, setLinkedinConnected] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
 
   // If redirect contained an alert, let's show it
   const alertMsg = location.state?.alert;
@@ -57,6 +58,7 @@ export default function ResumeUploadPage() {
 
   const handleAnalyze = async () => {
     if (uploadedFile) {
+      setUploadError("");
       setIsUploading(true);
       try {
         await uploadResume(uploadedFile);
@@ -64,6 +66,7 @@ export default function ResumeUploadPage() {
         navigate("/app/dashboard");
       } catch (error) {
         console.error("Upload failed", error);
+        setUploadError(error.message || "Resume upload failed. Please try again.");
       } finally {
         setIsUploading(false);
       }
@@ -110,6 +113,16 @@ export default function ResumeUploadPage() {
           >
             <AlertCircle className="w-5 h-5 shrink-0" />
             <p className="text-sm font-medium">{alertMsg}</p>
+          </motion.div>
+        )}
+
+        {uploadError && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 max-w-xl mx-auto"
+          >
+            <AlertCircle className="w-5 h-5 shrink-0" />
+            <p className="text-sm font-medium">{uploadError}</p>
           </motion.div>
         )}
 

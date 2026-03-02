@@ -1,8 +1,9 @@
-﻿import { Target, TrendingUp, Award, Zap, ArrowRight, Activity, BookOpen, GraduationCap, Loader2, Upload } from "lucide-react";
+import { Target, TrendingUp, Award, Zap, ArrowRight, Activity, BookOpen, GraduationCap, Loader2, Upload } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
+import { postJson } from "../lib/api";
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -13,13 +14,14 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const fetchDashboardData = async () => {
+      if (!user?.id) {
+        setIsLoading(false);
+        return;
+      }
+
+      setIsLoading(true);
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/dashboard`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userId: user?.id })
-        });
-        const data = await response.json();
+        const data = await postJson("/api/gemini/dashboard", { userId: user?.id });
         setDashboardData(data);
       } catch (error) {
         console.error("Failed to fetch dashboard data:", error);
@@ -29,7 +31,7 @@ export default function DashboardPage() {
     };
 
     fetchDashboardData();
-  }, []);
+  }, [user?.id, user?.hasResume]);
 
   const statsGridData = dashboardData ? [
     { title: "Skill Score", value: dashboardData.stats.skillScore, icon: Target, trend: dashboardData.stats.skillTrend, color: "text-blue-400" },
@@ -48,7 +50,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center text-white">
         <Loader2 className="w-10 h-10 animate-spin text-blue-500 mb-4" />
-        <p className="text-gray-400">Gemini is assembling your dashboard...</p>
+        <p className="text-gray-400">AI is assembling your dashboard...</p>
       </div>
     );
   }
@@ -136,7 +138,7 @@ export default function DashboardPage() {
           {/* AI Insights */}
           <div className="bg-gradient-to-br from-blue-900/20 to-[#0A0A0A] border border-blue-500/20 rounded-2xl p-6 backdrop-blur-md pb-12">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2 text-white">
-              <Zap className="w-5 h-5 text-blue-400" /> Gemini Career Insights
+              <Zap className="w-5 h-5 text-blue-400" /> AI Career Insights
             </h2>
             <p className="text-gray-300 leading-relaxed font-medium">
               {dashboardData?.insights?.message}

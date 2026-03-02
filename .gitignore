@@ -20,3 +20,16 @@ npm-debug.log*
 # Build files
 dist/
 build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+python_server/venv/
+python_server/data/

@@ -6,8 +6,8 @@
     "type": "module",
     "scripts": {
         "start": "node index.js",
-        "dev": "nodemon index.js",
-        "server": "nodemon index.js"
+        "dev": "nodemon --ignore data/** index.js",
+        "server": "nodemon --ignore data/** index.js"
     },
     "dependencies": {
         "@google/generative-ai": "^0.24.1",
@@ -15,7 +15,8 @@
         "dotenv": "^16.4.5",
         "express": "^4.19.2",
         "jsonwebtoken": "^9.0.2",
-        "multer": "^2.1.0"
+        "multer": "^2.1.0",
+        "pdf-parse": "^2.4.5"
     },
     "devDependencies": {
         "nodemon": "^3.1.14"
