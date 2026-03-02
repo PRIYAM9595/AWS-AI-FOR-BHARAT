@@ -27,6 +27,7 @@ export default function LearningNavigatorPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          userId: user?.id,
           role: "Senior Full-Stack Developer",
           currentSkills: ["React", "JavaScript"]
         }),

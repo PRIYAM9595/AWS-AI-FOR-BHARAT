@@ -1,4 +1,5 @@
 ﻿import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   DollarSign,
@@ -28,6 +29,7 @@ const availableSkills = [
 ];
 
 export default function CareerSimulationPage() {
+  const { user } = useAuth();
   const [selectedSkills, setSelectedSkills] = useState(["React", "Node.js"]);
   const [experienceYears, setExperienceYears] = useState(3);
   const [isSimulating, setIsSimulating] = useState(false);
@@ -45,7 +47,7 @@ export default function CareerSimulationPage() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/career-simulation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: "Frontend Developer" }),
+        body: JSON.stringify({ userId: user?.id, role: "Frontend Developer" }),
       });
       const data = await response.json();
       setSimulationResult(data);

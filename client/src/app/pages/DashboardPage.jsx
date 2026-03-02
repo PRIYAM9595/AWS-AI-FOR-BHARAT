@@ -16,7 +16,8 @@ export default function DashboardPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/dashboard`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" }
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: user?.id })
         });
         const data = await response.json();
         setDashboardData(data);

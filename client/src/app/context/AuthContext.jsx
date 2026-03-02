@@ -67,13 +67,15 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
-    const uploadResume = async () => {
-        // Call dummy endpoint
+    const uploadResume = async (file) => {
         try {
+            const formData = new FormData();
+            formData.append("resume", file);
+            formData.append("userId", user?.id || "dummy_id");
+
             const response = await fetch(`${API_URL}/auth/upload-resume`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ userId: user?.id || "dummy_id" }),
+                body: formData,
             });
             const data = await response.json();
             if (data.success && user) {
@@ -82,7 +84,7 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem("skillgps_user", JSON.stringify(updatedUser));
             }
         } catch (err) {
-            console.error("Resume upload mocked locally due to err", err);
+            console.error("Resume upload failed", err);
             // Fallback local update if server fails
             if (user) {
                 const updatedUser = { ...user, hasResume: true };

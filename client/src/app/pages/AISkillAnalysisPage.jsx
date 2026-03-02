@@ -1,4 +1,5 @@
 ﻿import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -10,6 +11,7 @@ import {
 } from "recharts";
 
 export default function AISkillAnalysisPage() {
+  const { user } = useAuth();
   const [analysisData, setAnalysisData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,7 +20,8 @@ export default function AISkillAnalysisPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/skill-analysis`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" }
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: user?.id })
         });
         const data = await response.json();
         setAnalysisData(data);

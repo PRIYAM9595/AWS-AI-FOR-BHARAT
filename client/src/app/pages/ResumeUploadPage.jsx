@@ -59,7 +59,7 @@ export default function ResumeUploadPage() {
     if (uploadedFile) {
       setIsUploading(true);
       try {
-        await uploadResume();
+        await uploadResume(uploadedFile);
         // Redirect to dashboard where the user can now browse
         navigate("/app/dashboard");
       } catch (error) {

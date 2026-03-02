@@ -1,6 +1,7 @@
 ﻿import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import {
   Calendar, Clock, CheckCircle2, Circle, Play, ChevronRight, Sparkles, Loader2, ArrowRight
 } from "lucide-react";
@@ -8,6 +9,7 @@ import {
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export default function AIWeeklyPlannerPage() {
+  const { user } = useAuth();
   const [plannerData, setPlannerData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDay, setSelectedDay] = useState("Mon");
@@ -17,7 +19,8 @@ export default function AIWeeklyPlannerPage() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gemini/weekly-planner`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" }
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: user?.id })
         });
         const data = await response.json();
         setPlannerData(data);
